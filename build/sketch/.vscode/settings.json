@@ -1,0 +1,7 @@
+#line 1 "/www/wwwroot/HTX/MayChiecRuou/.vscode/settings.json"
+{
+    "files.associations": {
+        "*.ino": "cpp",
+        "cmath": "cpp"
+    }
+}
