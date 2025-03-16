@@ -1,0 +1,162 @@
+[
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/cores/esp32"
+  },
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/variants/esp32da"
+  },
+  {
+    "Sourcefile": "/www/wwwroot/HTX/MayChiecRuou/build/sketch/MayChiecRuou.ino.cpp",
+    "Include": "WiFi.h",
+    "Includepath": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/WiFi/src"
+  },
+  {
+    "Sourcefile": "/www/wwwroot/HTX/MayChiecRuou/build/sketch/MayChiecRuou.ino.cpp",
+    "Include": "Network.h",
+    "Includepath": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/Network/src"
+  },
+  {
+    "Sourcefile": "/www/wwwroot/HTX/MayChiecRuou/build/sketch/MayChiecRuou.ino.cpp",
+    "Include": "WebServer.h",
+    "Includepath": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/WebServer/src"
+  },
+  {
+    "Sourcefile": "/www/wwwroot/HTX/MayChiecRuou/build/sketch/MayChiecRuou.ino.cpp",
+    "Include": "FS.h",
+    "Includepath": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/FS/src"
+  },
+  {
+    "Sourcefile": "/www/wwwroot/HTX/MayChiecRuou/build/sketch/MayChiecRuou.ino.cpp",
+    "Include": "Preferences.h",
+    "Includepath": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/Preferences/src"
+  },
+  {
+    "Sourcefile": "/www/wwwroot/HTX/MayChiecRuou/build/sketch/MayChiecRuou.ino.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/WiFi/src/AP.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/WiFi/src/STA.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/WiFi/src/WiFi.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/WiFi/src/WiFiAP.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/WiFi/src/WiFiGeneric.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/WiFi/src/WiFiMulti.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/WiFi/src/WiFiSTA.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/WiFi/src/WiFiScan.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/Network/src/NetworkClient.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/Network/src/NetworkEvents.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/Network/src/NetworkInterface.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/Network/src/NetworkManager.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/Network/src/NetworkServer.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/Network/src/NetworkUdp.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/WebServer/src/Parsing.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/WebServer/src/WebServer.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/WebServer/src/detail/mimetable.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/WebServer/src/middleware/AuthenticationMiddleware.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/WebServer/src/middleware/CorsMiddleware.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/WebServer/src/middleware/LoggingMiddleware.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/WebServer/src/middleware/MiddlewareChain.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/FS/src/FS.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/FS/src/vfs_api.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/root/.arduino15/packages/esp32/hardware/esp32/3.1.1/libraries/Preferences/src/Preferences.cpp",
+    "Include": "",
+    "Includepath": null
+  }
+]

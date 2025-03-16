@@ -1,0 +1,38 @@
+#line 1 "/www/wwwroot/HTX/MayChiecRuou/diagram.json"
+{
+  "version": 1,
+  "author": "Lam Nguyen",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 44.6,
+      "left": -115.2,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": 121.4,
+      "left": -115.2,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    { "type": "wokwi-led", "id": "led1", "top": 54, "left": 167, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led2", "top": 121.2, "left": 167, "attrs": { "color": "red" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "btn1:1.r", "esp:32", "green", [ "h29", "v28.8" ] ],
+    [ "led1:C", "led2:C", "green", [ "v0" ] ],
+    [ "led2:C", "esp:GND.2", "green", [ "v9.6", "h38.8", "v-144" ] ],
+    [ "led1:A", "esp:2", "green", [ "v9.6", "h-105.6", "v57.6" ] ],
+    [ "led2:A", "esp:4", "green", [ "v0" ] ],
+    [ "btn2:2.r", "btn1:2.r", "green", [ "h9.8", "v-76.6" ] ],
+    [ "esp:GND.1", "btn2:2.r", "black", [ "h0" ] ],
+    [ "btn2:1.r", "esp:27", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

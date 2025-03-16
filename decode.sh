@@ -1,0 +1,1 @@
+read -p "Nhập Backtrace: " BACKTRACE && /root/.arduino15/packages/esp32/tools/esp-x32/2405/bin/xtensa-esp-elf-addr2line -fe ./build/MayChiecRuou.ino.elf $BACKTRACE
