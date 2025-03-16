@@ -13,11 +13,11 @@ WebServer server(80);
 int button1 = 32;
 int button2 = 27;
 
-int percentHigh1 = 80;
-int percentHigh2 = 80;
+int percentHigh1 = 20;
+int percentHigh2 = 20;
 
 int motor1 = 17;
-int motor2 = 4;
+int motor2 = 18;
 
 const int freq = 5000;    // Tần số PWM (5 kHz)
 const int resolution = 8; // Độ phân giải 8 bit (0-255)
@@ -28,49 +28,85 @@ bool motor1_state = LOW;
 bool motor2_state = LOW;
 int timeRun1 = 8500; // 13s
 int timeRun2 = 8500; // 13s
+
 int minMotorSpeed1 = 80;
 int minMotorSpeed2 = 80;
+
 unsigned long delay1 = 0;
 unsigned long delay2 = 0;
+
 IPAddress local_ip(192, 168, 2, 1);
 IPAddress gateway(192, 168, 2, 1);
 IPAddress subnet(255, 255, 255, 0);
-#line 36 "/www/wwwroot/HTX/MayChiecRuou/MayChiecRuou.ino"
+
+#line 40 "/www/wwwroot/HTX/MayChiecRuou/MayChiecRuou.ino"
 void handle_NotFound();
-#line 42 "/www/wwwroot/HTX/MayChiecRuou/MayChiecRuou.ino"
+#line 48 "/www/wwwroot/HTX/MayChiecRuou/MayChiecRuou.ino"
 void writeLedC1(int value);
-#line 50 "/www/wwwroot/HTX/MayChiecRuou/MayChiecRuou.ino"
+#line 71 "/www/wwwroot/HTX/MayChiecRuou/MayChiecRuou.ino"
 void writeLedC2(int value);
-#line 58 "/www/wwwroot/HTX/MayChiecRuou/MayChiecRuou.ino"
+#line 94 "/www/wwwroot/HTX/MayChiecRuou/MayChiecRuou.ino"
 void setup();
-#line 112 "/www/wwwroot/HTX/MayChiecRuou/MayChiecRuou.ino"
+#line 157 "/www/wwwroot/HTX/MayChiecRuou/MayChiecRuou.ino"
 void saveToEEPROM();
-#line 124 "/www/wwwroot/HTX/MayChiecRuou/MayChiecRuou.ino"
+#line 169 "/www/wwwroot/HTX/MayChiecRuou/MayChiecRuou.ino"
 void readFromEEPROM();
-#line 137 "/www/wwwroot/HTX/MayChiecRuou/MayChiecRuou.ino"
+#line 182 "/www/wwwroot/HTX/MayChiecRuou/MayChiecRuou.ino"
 void handleRoot();
-#line 205 "/www/wwwroot/HTX/MayChiecRuou/MayChiecRuou.ino"
+#line 250 "/www/wwwroot/HTX/MayChiecRuou/MayChiecRuou.ino"
 void loop();
-#line 36 "/www/wwwroot/HTX/MayChiecRuou/MayChiecRuou.ino"
+#line 40 "/www/wwwroot/HTX/MayChiecRuou/MayChiecRuou.ino"
 void handle_NotFound()
 {
     server.send(404, "text/plain", "Not found");
 }
+
 int lastLedC1 = -1;
 int lastLedC2 = -1;
-void writeLedC1(int value){
+
+void writeLedC1(int value)
+{
     if (lastLedC1 != value)
     {
         lastLedC1 = value;
-        ledcWrite(motor1, value);
+        int tryCount = 10;
+        if(!ledcWrite(motor1, value)){
+            Serial.println("Error write motor1");
+            while(tryCount > 0){
+                tryCount--;
+                if(ledcWrite(motor1, value)){
+                    break;
+                }
+            }
+            if(tryCount == 0){
+                Serial.println("Error write motor1");
+                while(1);
+            }
+
+        }
         Serial.println("dutyCycle motor 1: " + (String)value);
     }
 }
-void writeLedC2(int value){
+void writeLedC2(int value)
+{
     if (lastLedC2 != value)
     {
         lastLedC2 = value;
-        ledcWrite(motor2, value);
+        int tryCount = 10;
+        if(!ledcWrite(motor2, value)){
+            Serial.println("Error write motor2");
+            while(tryCount > 0){
+                tryCount--;
+                if(ledcWrite(motor2, value)){
+                    break;
+                }
+            }
+            if(tryCount == 0){
+                Serial.println("Error write motor2");
+                while(1);
+            }
+
+        }
         Serial.println("dutyCycle motor 2: " + (String)value);
     }
 }
@@ -79,8 +115,16 @@ void setup()
     // Tắt Watchdog Timer hệ thống
     esp_task_wdt_deinit();
     Serial.begin(115200);
-    ledcAttach(motor1, freq, resolution);
-    ledcAttach(motor2, freq, resolution);
+
+    if(!ledcAttach(motor1, freq, resolution)){
+        Serial.println("Error attaching motor1");
+        while(1);
+    }
+
+    if(!ledcAttach(motor2, freq, resolution)){
+        Serial.println("Error attaching motor2");
+        while(1);
+    }
 
     writeLedC1(0);
     writeLedC2(0);
@@ -116,7 +160,8 @@ void setup()
     if (!WiFi.softAP("HTXXANH"))
     {
         Serial.print("Không thể tạo HTXXANH");
-        while (1)            ;
+        while (1)
+            ;
     }
     Serial.println("Đang khởi động AP");
     delay(100);
@@ -147,8 +192,8 @@ void readFromEEPROM()
     timeRun2 = preferences.getInt("timeRun2", 8500);
     minMotorSpeed1 = preferences.getInt("minMotorSpeed1", 80);
     minMotorSpeed2 = preferences.getInt("minMotorSpeed2", 80);
-    percentHigh1 = preferences.getInt("percentHigh1", 80);
-    percentHigh2 = preferences.getInt("percentHigh2", 80);
+    percentHigh1 = preferences.getInt("percentHigh1", 20);
+    percentHigh2 = preferences.getInt("percentHigh2", 20);
 
     preferences.end();
     Serial.println("Đã tải cấu hình!");
@@ -294,7 +339,7 @@ void loop()
                 unsigned long elapsed1 = millis() - delay1;
                 int dutyCycle1 = maxDuty;
                 // Tính duty cycle theo hàm mũ giảm dần
-                Serial.println(round((elapsed1 * 100) / timeRun1));
+                //Serial.println(round((elapsed1 * 100) / timeRun1));
                 if (delay1 > 0 && round((elapsed1 * 100) / timeRun1) > percentHigh1)
                 {
                     dutyCycle1 = minMotorSpeed1;
@@ -302,10 +347,9 @@ void loop()
                 // Debug: in ra giá trị thời gian và duty cycle
                 // Cập nhật giá trị PWM
                 writeLedC1(dutyCycle1);
-                Serial.println("dutyCycle motor 1: " + (String)dutyCycle1);
             }
         }
-        Serial.println("Delay1: " + String(millis() - delay1));
+        //Serial.println("Delay1: " + String(millis() - delay1));
     }
     if (motor2_state)
     {
@@ -321,18 +365,20 @@ void loop()
             if (delay2 > 0)
             {
                 unsigned long elapsed2 = millis() - delay2;
-                // Tính duty cycle theo hàm mũ giảm dần
                 int dutyCycle2 = maxDuty;
-                Serial.println(round((elapsed2 * 100) / timeRun2));
+                // Tính duty cycle theo hàm mũ giảm dần
+                //Serial.println(round((elapsed2 * 100) / timeRun2));
                 if (delay2 > 0 && round((elapsed2 * 100) / timeRun2) > percentHigh2)
                 {
                     dutyCycle2 = minMotorSpeed2;
                 }
+                // Debug: in ra giá trị thời gian và duty cycle
+                // Cập nhật giá trị PWM
                 writeLedC2(dutyCycle2);
-                Serial.println("dutyCycle motor 2: " + (String)dutyCycle2);
             }
         }
-        Serial.println("Delay2: " + String(millis() - delay2));
+        //Serial.println("Delay2: " + String(millis() - delay2));
     }
-    delay(100);
+
+    
 }

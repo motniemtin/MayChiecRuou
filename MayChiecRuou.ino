@@ -11,11 +11,11 @@ WebServer server(80);
 int button1 = 32;
 int button2 = 27;
 
-int percentHigh1 = 80;
-int percentHigh2 = 80;
+int percentHigh1 = 20;
+int percentHigh2 = 20;
 
 int motor1 = 17;
-int motor2 = 4;
+int motor2 = 18;
 
 const int freq = 5000;    // Tần số PWM (5 kHz)
 const int resolution = 8; // Độ phân giải 8 bit (0-255)
@@ -39,18 +39,34 @@ void handle_NotFound()
 }
 int lastLedC1 = -1;
 int lastLedC2 = -1;
-void writeLedC1(int value){
+void writeLedC1(int value)
+{
     if (lastLedC1 != value)
     {
         lastLedC1 = value;
-        ledcWrite(motor1, value);
+        int tryCount = 10;
+        if(!ledcWrite(motor1, value)){
+            Serial.println("Error write motor1");
+            while(tryCount > 0){
+                tryCount--;
+                if(ledcWrite(motor1, value)){
+                    break;
+                }
+            }
+            if(tryCount == 0){
+                Serial.println("Error write motor1");
+                while(1);
+            }
+        }
         Serial.println("dutyCycle motor 1: " + (String)value);
     }
 }
-void writeLedC2(int value){
+void writeLedC2(int value)
+{
     if (lastLedC2 != value)
     {
         lastLedC2 = value;
+        int tryCount = 10;
         ledcWrite(motor2, value);
         Serial.println("dutyCycle motor 2: " + (String)value);
     }
@@ -60,8 +76,16 @@ void setup()
     // Tắt Watchdog Timer hệ thống
     esp_task_wdt_deinit();
     Serial.begin(115200);
-    ledcAttach(motor1, freq, resolution);
-    ledcAttach(motor2, freq, resolution);
+
+    if(!ledcAttach(motor1, freq, resolution)){
+        Serial.println("Error attaching motor1");
+        while(1);
+    }
+
+    if(!ledcAttach(motor2, freq, resolution)){
+        Serial.println("Error attaching motor2");
+        while(1);
+    }
 
     writeLedC1(0);
     writeLedC2(0);
@@ -97,7 +121,8 @@ void setup()
     if (!WiFi.softAP("HTXXANH"))
     {
         Serial.print("Không thể tạo HTXXANH");
-        while (1)            ;
+        while (1)
+            ;
     }
     Serial.println("Đang khởi động AP");
     delay(100);
